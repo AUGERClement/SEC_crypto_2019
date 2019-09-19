@@ -69,4 +69,4 @@ for line in content:
         
 
 
-print('{:02X}'.format(key))
+print(index, '{:02X}'.format(key))
