@@ -11,7 +11,7 @@ def reader(filename):
         quit(84)
     return content
 
-if (len(sys.argv) < 0):
+if (len(sys.argv) < 2):
     quit(84)
 
 content = reader(sys.argv[1])
