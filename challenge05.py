@@ -31,9 +31,10 @@ def encode_xor(content, key):
     
     return result.hex().upper()
 
-#get content hex from file
-key, content = reader(sys.argv[1])
-result = encode_xor(content, key)
 
+if __name__ == "__main__":
+    #get content hex from file
+    key, content = reader(sys.argv[1])
+    result = encode_xor(content, key)
 
-print(result)
+    print(result)
