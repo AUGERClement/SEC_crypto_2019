@@ -53,20 +53,23 @@ def bruteforce(line):
             key, score = bruteforcekey, scoretmp 
     return key, score
 
+#detect a single byte xor in a list of str (hex converted)
+def detector(content):
+    index, indextmp = 0, 0 #index of the line, and his tmp
+    key, score = 0, 0 #key and score of the closest english-like text
+    keytmp, scoretmp = 0, 0 #key and score for the tested lines
+
+    for line in content:
+        keytmp, scoretmp = bruteforce(line)
+        if (scoretmp > score):
+            key, score, index = keytmp, scoretmp, indextmp
+        indextmp += 1
+    return index, key
 
 #get content hex from file
 content = reader(sys.argv[1])
 
-index, indextmp = 0, 0 #index of the line, and his tmp
-key, score = 0, 0 #key and score of the closest english-like text
-keytmp, scoretmp = 0, 0 #key and score for the tested lines
+index, key = detector(content)
 
-for line in content:
-    keytmp, scoretmp = bruteforce(line)
-    if (scoretmp > score):
-        key, score, index = keytmp, scoretmp, indextmp
-    indextmp += 1
-        
-
-
+#index may need a incrementation depending of the moulinette
 print(index, '{:02X}'.format(key))
