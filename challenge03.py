@@ -35,20 +35,22 @@ def get_score(result):
             cpt += 1
     return cpt
 
+
+def bruteforce_single_key(content):
+    hexa = bytes.fromhex(content)
+    result = b''
+    key, score = 0, 0
+    scoretmp = 0
+
+    for bruteforcekey in range(256):
+        result = char_xor(hexa, bruteforcekey)
+
+        scoretmp = get_score(result)
+        if (scoretmp > score):
+            key, score = bruteforcekey, scoretmp 
+    return key
+
 #get content hex from file
-content = bytes.fromhex(reader(sys.argv[1]))
-
- #bytes arr
-result = b''
-key, score = 0, 0
-scoretmp = 0
-
-for bruteforcekey in range(256):
-    result = char_xor(content, bruteforcekey)
-
-    scoretmp = get_score(result)
-    if (scoretmp > score):
-        key, score = bruteforcekey, scoretmp 
-
-
+content = reader(sys.argv[1])
+key = bruteforce_single_key(content)
 print('{:02X}'.format(key))
