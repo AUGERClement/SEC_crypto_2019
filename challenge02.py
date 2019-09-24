@@ -22,6 +22,8 @@ def xor_str(str1, str2):
     bytes1 = bytes.fromhex(str1)
     bytes2 = bytes.fromhex(str2)
 
+    if (len(bytes1) != len(bytes2)):
+        quit(84)
     bytes3 = bxor(bytes1, bytes2)
 
     solution = bytes3.hex()
