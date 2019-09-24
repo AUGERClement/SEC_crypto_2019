@@ -25,12 +25,11 @@ def hex_convertisser(content):
 
 
 #main event
-content = reader(sys.argv[1])
 
+if __name__ == "__main__":
+    content = reader(sys.argv[1])
+    if (len(content) == 0):
+        quit(84)
 
-if (len(content) == 0):
-    quit(84)
-
-converted = hex_convertisser(content)
-
-print (converted)
+    converted = hex_convertisser(content)
+    print (converted)
