@@ -10,10 +10,6 @@ def reader(filename):
         quit(84)
     return content
 
-
-if (len(sys.argv) != 2):
-    quit(84)
-
 #xor the string with the single byte key
 def char_xor(content, key):
     result = b'' #array of bytes to stock res
@@ -53,6 +49,9 @@ def bruteforce_single_key(content):
 
 if __name__ == "__main__":
     #get content hex from file
+
+    if (len(sys.argv) != 2):
+        quit(84)
     content = reader(sys.argv[1])
     key = bruteforce_single_key(content)
     print('{:02X}'.format(key))
