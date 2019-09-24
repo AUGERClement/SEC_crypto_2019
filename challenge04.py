@@ -66,10 +66,11 @@ def detector(content):
         indextmp += 1
     return index, key
 
-#get content hex from file
-content = reader(sys.argv[1])
 
-index, key = detector(content)
+if __name__ == "__main__":
+    #get content hex from file
+    content = reader(sys.argv[1])
 
-#index may need a incrementation depending of the moulinette
-print(index, '{:02X}'.format(key))
+    index, key = detector(content)
+    #index may need a incrementation depending of the moulinette
+    print(index, '{:02X}'.format(key))
