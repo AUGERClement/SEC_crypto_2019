@@ -14,13 +14,22 @@ def reader(filename):
 if (len(sys.argv) < 2):
     quit(84)
 
-content = reader(sys.argv[1])
-
 if (len(content) == 0):
     quit(84)
 
 
-hexa = bytes.fromhex(content)
-sixtyfour = base64.b64encode(hexa)
+#convert a HEX str to base 64.
+def hex_convertisser(content):
 
-print(sixtyfour.decode())
+    hexa = bytes.fromhex(content)
+    sixtyfour = base64.b64encode(hexa)
+
+    return sixtyfour.decode()
+
+
+
+#main event
+content = reader(sys.argv[1])
+converted = hex_convertisser(content)
+
+print (converted)
