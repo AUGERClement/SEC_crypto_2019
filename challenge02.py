@@ -30,14 +30,16 @@ def xor_str(str1, str2):
 
 
 
-if (len(sys.argv) < 0):
-    quit(84)
 
-content = reader(sys.argv[1])
+if __name__ == "__main__":
+    if (len(sys.argv) < 0):
+        quit(84)
 
-if (len(content) != 2):
-    quit(84)
+    content = reader(sys.argv[1])
+
+    if (len(content) != 2):
+        quit(84)
 
 
-xored = xor_str(content[0], content[1])
-print(xored)
+    xored = xor_str(content[0], content[1])
+    print(xored)
