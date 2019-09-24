@@ -14,10 +14,6 @@ def reader(filename):
 if (len(sys.argv) < 2):
     quit(84)
 
-if (len(content) == 0):
-    quit(84)
-
-
 #convert a HEX str to base 64.
 def hex_convertisser(content):
 
@@ -30,6 +26,11 @@ def hex_convertisser(content):
 
 #main event
 content = reader(sys.argv[1])
+
+
+if (len(content) == 0):
+    quit(84)
+
 converted = hex_convertisser(content)
 
 print (converted)
