@@ -50,7 +50,9 @@ def bruteforce_single_key(content):
             key, score = bruteforcekey, scoretmp 
     return key
 
-#get content hex from file
-content = reader(sys.argv[1])
-key = bruteforce_single_key(content)
-print('{:02X}'.format(key))
+
+if __name__ == "__main__":
+    #get content hex from file
+    content = reader(sys.argv[1])
+    key = bruteforce_single_key(content)
+    print('{:02X}'.format(key))
