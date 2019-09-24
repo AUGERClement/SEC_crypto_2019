@@ -29,11 +29,11 @@ def encode_xor(content, key):
         if (i == length):
             i = 0
     
-    return result
+    return result.hex().upper()
 
 #get content hex from file
 key, content = reader(sys.argv[1])
 result = encode_xor(content, key)
 
 
-print(result.hex().upper())
+print(result)
