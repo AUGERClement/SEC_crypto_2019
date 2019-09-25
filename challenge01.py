@@ -17,7 +17,10 @@ if (len(sys.argv) < 2):
 #convert a HEX str to base 64.
 def hex_convertisser(content):
 
-    hexa = bytes.fromhex(content)
+    try:
+        hexa = bytes.fromhex(content)
+    except:
+        quit(84)
     sixtyfour = base64.b64encode(hexa)
 
     return sixtyfour.decode()

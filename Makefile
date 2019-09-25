@@ -5,37 +5,26 @@
 ## Makefile
 ##
 
-DEBUG=yes
-CC=			gcc
-ifeq ($(DEBUG), yes)
-	CFLAGS+=	-W -Wall -Werror -g3
-	LDFLAGS+=	-lcrypto
-else
-	CFLAGS+=	-W -Wall -Werror
-	LDFLAGS+=	-lcrypto
-endif
+# SRC=	challenge01.py	\
+# 		challenge02.py
 
-SRC=	challenge01.c
+# OBJ=	($(SRC):challenge%.py=challenge%)
 
-OBJ=	$(SRC:.c=.o)
+challenge%:challenge%.py
+		cp $< $@
 
-NAME=	challenge01
+challenge%.o:challenge%.c
+		gcc $< -o:$@
 
-## ALL RULES ##
-
-all:	$(NAME)
-ifeq ($(DEBUG), yes)
-	@echo "Generation en mode debug"
-endif
-
-$(NAME):	$(OBJ)
-		$(CC) -o $@ $(OBJ) $(LDFLAGS)
+all:
+	sh test.sh
 
 clean:
-		rm -rf $(OBJ)
+	rm -rf __pycache__/
 
 fclean:	clean
-		rm -rf $(NAME)
+	rm challenge0[0-9]
+	rm test/t_challenge0[09]
 
 re:		fclean all
 
