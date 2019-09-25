@@ -17,15 +17,17 @@ challenge%.o:challenge%.c
 		gcc $< -o:$@
 
 all:
-	sh test.sh
+	sh file_script.sh make
 
 clean:
 	rm -rf __pycache__/
 
 fclean:	clean
-	rm challenge0[0-9]
-	rm test/t_challenge0[09]
+	sh file_script.sh fclean
 
 re:		fclean all
 
-.PHONY:	all clean fclean re
+test:
+	sh file_script.sh test
+
+.PHONY:	all clean fclean re test
