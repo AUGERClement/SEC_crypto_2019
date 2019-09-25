@@ -16,11 +16,12 @@ then
     done
 elif [[ $1 == "test" ]]
 then
+    export PYTHONPATH="$PWD"
     file_list=`find . * | grep -P "t_challenge(\d{2})\.py$"`
 
     for variable in $file_list
     do
-         python3 -m unittest $variable
+        python3 -m unittest $variable
     done
 else
     echo "Bad command enter."

@@ -27,6 +27,3 @@ class TestChallenge01(unittest.TestCase):
 
     def test_hexa_to_deca_big_number(self):
         self.assertEqual(hex_convertisser("931A75331265"), "kxp1MxJl")
-
-if __name__ == '__main__':
-    unittest.main()

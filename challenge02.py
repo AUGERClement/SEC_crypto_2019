@@ -19,11 +19,12 @@ def bxor(b1, b2):
 
 #xor two string of char. Convert them to hex, call bxor to xor them, and then reconvert to hex.
 def xor_str(str1, str2):
+    if len(str1) != len(str2):
+        quit(84)
+
     bytes1 = bytes.fromhex(str1)
     bytes2 = bytes.fromhex(str2)
 
-    if (len(bytes1) != len(bytes2)):
-        quit(84)
     bytes3 = bxor(bytes1, bytes2)
 
     solution = bytes3.hex()
