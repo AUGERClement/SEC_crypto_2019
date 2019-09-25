@@ -8,6 +8,8 @@ def reader(filename):
             content = file.read().rstrip()
     except:
         quit(84)
+    if (len(content) == 0):
+        quit(84)
     return content
 
 #xor the string with the single byte key
@@ -33,7 +35,10 @@ def get_score(result):
 
 
 def bruteforce_single_key(content):
-    hexa = bytes.fromhex(content)
+    try:
+        hexa = bytes.fromhex(content)
+    except:
+        quit(84)
     result = b''
     key, score = 0, 0
     scoretmp = 0
