@@ -9,7 +9,12 @@ def reader(filename):
     except:
         quit(84)
 
-    content = [bytes.fromhex(line) for line in content]
+    if (len(content) == 2):
+        quit(84)
+    try:
+        content = [bytes.fromhex(line) for line in content]
+    except:
+        quit(84)
     return content[0], content[1]
 
 
