@@ -13,9 +13,6 @@ def reader(filename):
     return content
 
 
-if (len(sys.argv) != 2):
-    quit(84)
-
 #xor the string with the single byte key
 def char_xor(content, key):
     result = b'' #array of bytes to stock res
@@ -69,6 +66,10 @@ def detector(content):
 
 if __name__ == "__main__":
     #get content hex from file
+
+    if (len(sys.argv) != 2):
+        quit(84)
+
     content = reader(sys.argv[1])
 
     index, key = detector(content)
