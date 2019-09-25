@@ -74,4 +74,4 @@ if __name__ == "__main__":
 
     index, key = detector(content)
     #index may need a incrementation depending of the moulinette
-    print(index, '{:02X}'.format(key))
+    print(index + 1, '{:02X}'.format(key))
