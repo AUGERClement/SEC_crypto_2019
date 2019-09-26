@@ -6,10 +6,12 @@ def reader(filename):
     try:
         with open(filename) as file:
             content = file.read().rstrip()
+        hex_content = bytes.fromhex(content)
     except:
         quit(84)
 
-    hex_content = bytes.fromhex(content)
+    if (len(content) == 0):
+        quit(84)
     return hex_content
 
 #get hamming dist between two bytes arr (step1)
@@ -114,4 +116,7 @@ if __name__ == "__main__":
             block += bytes([content[j]])
         key += bytes(bruteforce(block))
 
+
+    #for byte in key:
+    #    print('{:02X}'.format(byte), end='')
     print()
