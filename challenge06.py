@@ -63,7 +63,6 @@ def bruteforce(line):
         scoretmp = get_score(result)
         if (scoretmp > score):
             key, score = bruteforcekey, scoretmp
-    print('{:02X}'.format(key), end='')
     return key
 
 
@@ -82,16 +81,19 @@ def get_keysize(content):
             piece2 = pieces[i + 1]
 
             #get hamming distance between two parts of the message
-            hamming_dists.append(get_hamming_distance(piece1, piece2) / keysize)
+            hamming_dists.append((get_hamming_distance(piece1, piece2) / keysize))
             i += 2
         result = {
             'keysize':keysize,
-            'avg distance': sum(hamming_dists) / len(hamming_dists)
+            'avg distance': (sum(hamming_dists) / len(hamming_dists))
         }
         average_distances.append(result)
-    #sort list and take the lower avg dist, with his keysize
-    key_length = sorted(average_distances, key=lambda x: x['avg distance'])[0]['keysize']
-    return key_length
+    #sort list and take the couple of lower avg dist
+    key = sorted(average_distances, key=lambda x: x['avg distance'])[0]
+    key2 = sorted(average_distances, key=lambda x: x['avg distance'])[1]
+    #print(key['avg distance'])
+    #print(key['keysize'])
+    return key['keysize'], key2['keysize']
 
 
 
@@ -102,11 +104,11 @@ if __name__ == "__main__":
     
     #get content hex from file
     content = reader(sys.argv[1])
-    key_length = get_keysize(content)
+    key_length, key2_length = get_keysize(content)
 
-    key = b''
-
-    #print(key_length) #Correct key_length
+    key = []
+    key2 = []
+    true_key = []
 
     #break cipher into block with each nth char inside
     #problable problem in those lines.
@@ -114,9 +116,21 @@ if __name__ == "__main__":
         block = b''
         for j in range (i, len(content), key_length):
             block += bytes([content[j]])
-        key += bytes(bruteforce(block))
+        key.append(bruteforce(block))
+
+    for i in range(key2_length):
+        block = b''
+        for j in range (i, len(content), key2_length):
+            block += bytes([content[j]])
+        key2.append(bruteforce(block))
+
+
 
 
     #for byte in key:
     #    print('{:02X}'.format(byte), end='')
+    #print()
+
+    for byte in key2:
+        print('{:02X}'.format(byte), end='')
     print()
