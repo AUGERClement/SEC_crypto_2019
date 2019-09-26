@@ -20,7 +20,7 @@ all:
 	sh file_script.sh make
 
 clean:
-	rm -rf __pycache__/
+	rm -rf */__pycache__/ __pycache__
 
 fclean:	clean
 	sh file_script.sh fclean

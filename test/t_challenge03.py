@@ -8,6 +8,7 @@
 # on the standard output in capital hexadecimal.
 # 
 ##
+# !/bin/python3
 
 import unittest
 from challenge03 import reader, bruteforce_single_key
