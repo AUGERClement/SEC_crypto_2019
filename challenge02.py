@@ -22,8 +22,11 @@ def xor_str(str1, str2):
     if len(str1) != len(str2):
         quit(84)
 
-    bytes1 = bytes.fromhex(str1)
-    bytes2 = bytes.fromhex(str2)
+    try:
+        bytes1 = bytes.fromhex(str1)
+        bytes2 = bytes.fromhex(str2)
+    except:
+        quit(84)
 
     bytes3 = bxor(bytes1, bytes2)
 
