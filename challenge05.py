@@ -9,17 +9,13 @@ def reader(filename):
     except:
         quit(84)
 
-    if (len(content) == 2):
+    if (len(content) != 2):
         quit(84)
     try:
         content = [bytes.fromhex(line) for line in content]
     except:
         quit(84)
     return content[0], content[1]
-
-
-if (len(sys.argv) != 2):
-    quit(84)
 
 #xor the string with the key (array of bytes)
 def encode_xor(content, key):
@@ -38,6 +34,8 @@ def encode_xor(content, key):
 
 
 if __name__ == "__main__":
+    if (len(sys.argv) != 2):
+        quit(84)
     #get content hex from file
     key, content = reader(sys.argv[1])
     result = encode_xor(content, key)
