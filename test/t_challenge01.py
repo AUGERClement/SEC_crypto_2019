@@ -6,6 +6,7 @@
 # it on the standart output.
 # 
 ##
+# !/bin/python3
 
 import unittest
 from challenge01 import reader, hex_convertisser

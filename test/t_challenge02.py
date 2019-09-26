@@ -6,6 +6,7 @@
 # by a newline and produces their XOR combination.
 # 
 ##
+# !/bin/python3
 
 import unittest
 from challenge02 import reader, xor_str

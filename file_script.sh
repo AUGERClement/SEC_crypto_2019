@@ -1,6 +1,6 @@
 if [[ $1 == "make" ]]
 then
-    file_list=`find . * | grep -P "^challenge(\d{2})\.py$"`
+    file_list=`ls -R | grep -P "^challenge(\d{2})\.py$"`
 
     for variable in $file_list
     do
@@ -8,7 +8,7 @@ then
     done
 elif [[ $1 == "fclean" ]]
 then
-    file_list=`find . * | grep -P "challenge(\d{2})$"`
+    file_list=`ls -R | grep -P "challenge(\d{2})$"`
 
     for variable in $file_list
     do
@@ -17,12 +17,15 @@ then
 elif [[ $1 == "test" ]]
 then
     export PYTHONPATH="$PWD"
-    file_list=`find . * | grep -P "t_challenge(\d{2})\.py$"`
+    cd test
+    file_list=`ls -R | grep -P "t_challenge(\d{2})\.py$"`
 
     for variable in $file_list
     do
         python3 -m unittest $variable
     done
+    echo $index
+    cd ..
 else
     echo "Bad command enter."
 fi
