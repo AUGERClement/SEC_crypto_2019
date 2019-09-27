@@ -96,6 +96,10 @@ def get_keysize(content):
     return key['keysize'], key2['keysize']
 
 
+def test_key(hex_content, key1, key2):
+    if (len(key1) <= len(key2)):
+        return key1
+    return key2
 
 
 if __name__ == "__main__":
@@ -103,34 +107,31 @@ if __name__ == "__main__":
         quit(84)
     
     #get content hex from file
-    content = reader(sys.argv[1])
-    key_length, key2_length = get_keysize(content)
+    hex_content = reader(sys.argv[1])
+    key1_length, key2_length = get_keysize(hex_content)
 
-    key = []
+    key1 = []
     key2 = []
     true_key = []
 
     #break cipher into block with each nth char inside
     #problable problem in those lines.
-    for i in range(key_length):
+    for i in range(key1_length):
         block = b''
-        for j in range (i, len(content), key_length):
-            block += bytes([content[j]])
-        key.append(bruteforce(block))
+        for j in range (i, len(hex_content), key1_length):
+            block += bytes([hex_content[j]])
+        key1.append(bruteforce(block))
 
     for i in range(key2_length):
         block = b''
-        for j in range (i, len(content), key2_length):
-            block += bytes([content[j]])
+        for j in range (i, len(hex_content), key2_length):
+            block += bytes([hex_content[j]])
         key2.append(bruteforce(block))
 
 
+    true_key = test_key(hex_content, key1, key2)
 
-
-    #for byte in key:
-    #    print('{:02X}'.format(byte), end='')
-    #print()
-
-    for byte in key2:
+    #true_key = key2
+    for byte in true_key:
         print('{:02X}'.format(byte), end='')
     print()
